@@ -99,7 +99,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 /* ─── HERO ───────────────────────────────────────── */
 .hero {
   min-height: 100svh; padding-top: 76px;
-  background: url('../images/1.png') center/cover no-repeat; position: relative; overflow: hidden;
+  background: url('1.png') center/cover no-repeat; position: relative; overflow: hidden;
   display: flex; align-items: center;
 }
 .hero::before { content: ''; position: absolute; inset: 0; background: rgba(4,10,4,.72); z-index: 0; }
