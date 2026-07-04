@@ -1,0 +1,777 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dịch vụ Vận Tải 360 by An Bình phục vụ xe ghép, bao xe, đưa đón tận nơi và vận chuyển hàng hóa tuyến Thái Nguyên, Hà Nội, Yên Bái, Lào Cai, Sapa. Hotline 0985 21 24 21.">
+  <meta property="og:title" content="Dịch vụ Vận Tải 360 An Bình | Xe ghép, bao xe, gửi hàng">
+  <meta property="og:description" content="Xe ghép, bao xe, đưa đón tận nơi và vận chuyển hàng hóa. Hotline 0985 21 24 21.">
+  <meta property="og:type" content="website">
+  <title>Dịch vụ Vận Tải 360 An Bình | Xe hợp đồng tuyến, đi đơn lẻ, bao xe, gửi hàng</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- ── NAV ─────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-box"><img src="images/logo-anbinh-new.jpg" alt="Logo An Bình"></div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">AN BÌNH TOUR</span>
+      <span class="nav-logo-sub">Vận Tải 360</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#routes">Tuyến Đường</a></li>
+    <li><a href="#services">Dịch Vụ</a></li>
+    <li><a href="#schedule">Lịch Trình</a></li>
+    <li><a href="#about">Về Chúng Tôi</a></li>
+    <li><a href="#contact">Liên Hệ</a></li>
+  </ul>
+  <div class="nav-right">
+    <span class="nav-tel">0985 21 24 21</span>
+    <a href="tel:0985212421" class="btn btn-gold" style="padding:10px 20px;font-size:13px;">Gọi Ngay</a>
+  </div>
+  <button class="burger" id="burger" aria-label="Mở menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#routes"   class="mob-link">Tuyến Đường</a>
+  <a href="#services" class="mob-link">Dịch Vụ</a>
+  <a href="#schedule" class="mob-link">Lịch Trình</a>
+  <a href="#about"    class="mob-link">Về Chúng Tôi</a>
+  <a href="#contact"  class="mob-link">Liên Hệ</a>
+  <a href="tel:0985212421" class="mob-tel">📞 0985 21 24 21</a>
+</div>
+
+<!-- ── HERO ─────────────────────────────────── -->
+<section class="hero" id="hero">
+  <div class="hero-deco">
+    <div class="hero-deco-grid"></div>
+    <div class="hero-deco-blob"></div>
+    <div class="hero-deco-line"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-split">
+      <div class="hero-content">
+        <div class="hero-badge sr">
+          <span class="hero-badge-dot"></span>
+          Dịch vụ Vận Tải An Bình &nbsp;·&nbsp; Phục vụ 24/7
+        </div>
+
+        <h1 class="hero-title sr d1">
+          <span class="gold" style="display:block">AN BÌNH</span>
+          <span class="stroke" style="display:block">TOUR</span>
+          <span class="sub">Kết Nối Mọi Nẻo Đường.</span>
+        </h1>
+
+        <p class="hero-sub sr d3">Dịch vụ vận tải thuộc thương hiệu An Bình — phục vụ hành khách, đưa đón tận nơi và vận chuyển hàng hóa trên các tuyến Thái Nguyên, Hà Nội, Yên Bái, Lào Cai, Sapa.</p>
+
+        <div class="hero-tags sr d4">
+          <span class="tag">Thái Nguyên ↔ Hà Nội</span>
+          <span class="tag">Yên Bái ↔ Hà Nội</span>
+          <span class="tag">Yên Bái ↔ Lào Cai</span>
+          <span class="tag">Lào Cai ↔ Sapa</span>
+          <span class="tag">Lào Cai/Sapa ↔ Hà Nội</span>
+        </div>
+
+        <div class="hero-ctas sr d5">
+          <a href="tel:0985212421" class="btn btn-gold">📞 Gọi Ngay: 0985 21 24 21</a>
+          <a href="#routes" class="btn btn-ghost">Xem Tuyến Đường ↓</a>
+          <button class="btn btn-ghost" onclick="openModal()">Đặt Chuyến</button>
+        </div>
+      </div>
+
+      <div class="hero-img-col sr right d2">
+        <div class="hero-img-frame img-fallback">
+          <img src="images/1.png" alt="Tài xế An Bình mở cửa đón khách tại khách sạn" width="600" height="560">
+          <div class="hero-img-badge">
+            <strong>15+</strong>
+            <span>Năm kinh nghiệm</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">
+    <div class="hero-scroll-bar"></div>
+    <span>Cuộn</span>
+  </div>
+</section>
+
+<!-- ── STRIPE 1 ──────────────────────────────── -->
+<div class="stripe-divider" aria-hidden="true">
+  <div class="stripe-divider-track">
+    <span class="stripe-divider-item">An Toàn</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Đúng Giờ</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Tận Tâm</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Sapa</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Lào Cai</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Yên Bái</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Thái Nguyên</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">An Toàn</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Đúng Giờ</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Tận Tâm</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Sapa</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Lào Cai</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Yên Bái</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">HN — Thái Nguyên</span><span class="stripe-divider-sep">◆</span>
+  </div>
+</div>
+
+<!-- ── ROUTES ───────────────────────────────── -->
+<section class="s-routes" id="routes">
+  <div class="wrap">
+    <div class="routes-head">
+      <div>
+        <span class="eyebrow sr">— Tuyến Đường Vận Tải 360</span>
+        <h2 class="h-xl sr d1">Chọn<br><span class="g">Tuyến Của Bạn.</span></h2>
+        <p class="lead sr d2">Kết nối Hà Nội với các tỉnh miền núi phía Bắc. Xe chạy hàng ngày, hai chiều, đúng giờ.</p>
+      </div>
+      <div class="routes-count sr right" aria-hidden="true">05</div>
+    </div>
+    <div class="routes-grid">
+      <div class="route-card sr d1 has-bg" style="background-image:url('images/1.png')">
+        <span class="route-id">01 — Hà Nội · Thái Nguyên</span>
+        <div class="route-title">Thái Nguyên ↔ Hà Nội</div>
+        <div class="route-type">Miền Đông Bắc</div>
+        <div class="route-divider"></div>
+        <div class="route-meta">
+          <div class="route-meta-i"><label>Khoảng cách</label><span>~80 km</span></div>
+          <div class="route-meta-i"><label>Thời gian</label><span>~1.5 giờ</span></div>
+        </div>
+        <div class="route-services">
+          <span class="route-svc-tag">Xe ghép</span>
+          <span class="route-svc-tag">Bao xe</span>
+          <span class="route-svc-tag">Gửi hàng</span>
+        </div>
+        <button class="route-link" onclick="openModal('route','Thái Nguyên ↔ Hà Nội')">Đặt tuyến này →</button>
+      </div>
+
+      <div class="route-card sr d2 has-bg" style="background-image:url('images/2.png')">
+        <span class="route-id">02 — Hà Nội · Yên Bái</span>
+        <div class="route-title">Yên Bái ↔ Hà Nội</div>
+        <div class="route-type">Thung Lũng Mù Cang Chải</div>
+        <div class="route-divider"></div>
+        <div class="route-meta">
+          <div class="route-meta-i"><label>Khoảng cách</label><span>~180 km</span></div>
+          <div class="route-meta-i"><label>Thời gian</label><span>~3.5 giờ</span></div>
+        </div>
+        <div class="route-services">
+          <span class="route-svc-tag">Xe ghép</span>
+          <span class="route-svc-tag">Bao xe</span>
+          <span class="route-svc-tag">Gửi hàng</span>
+        </div>
+        <button class="route-link" onclick="openModal('route','Yên Bái ↔ Hà Nội')">Đặt tuyến này →</button>
+      </div>
+
+      <div class="route-card sr d3 has-bg" style="background-image:url('images/2.1.png')">
+        <span class="route-id">03 — Yên Bái · Lào Cai</span>
+        <div class="route-title">Yên Bái ↔ Lào Cai</div>
+        <div class="route-type">Tây Bắc</div>
+        <div class="route-divider"></div>
+        <div class="route-meta">
+          <div class="route-meta-i"><label>Khoảng cách</label><span>~120 km</span></div>
+          <div class="route-meta-i"><label>Thời gian</label><span>~2.5 giờ</span></div>
+        </div>
+        <div class="route-services">
+          <span class="route-svc-tag">Bao xe</span>
+          <span class="route-svc-tag">Gửi hàng</span>
+        </div>
+        <button class="route-link" onclick="openModal('route','Yên Bái ↔ Lào Cai')">Đặt tuyến này →</button>
+      </div>
+
+      <div class="route-card sr d4 has-bg" style="background-image:url('images/7.png')">
+        <span class="route-id">04 — Lào Cai · Sapa</span>
+        <div class="route-title">Lào Cai ↔ Sapa</div>
+        <div class="route-type">Thiên Đường Núi Cao</div>
+        <div class="route-divider"></div>
+        <div class="route-meta">
+          <div class="route-meta-i"><label>Khoảng cách</label><span>~38 km</span></div>
+          <div class="route-meta-i"><label>Thời gian</label><span>~1 giờ</span></div>
+        </div>
+        <div class="route-services">
+          <span class="route-svc-tag">Xe ghép</span>
+          <span class="route-svc-tag">Bao xe</span>
+        </div>
+        <button class="route-link" onclick="openModal('route','Lào Cai ↔ Sapa')">Đặt tuyến này →</button>
+      </div>
+
+      <div class="route-card sr d5 has-bg" style="background-image:url('images/7.png')">
+        <span class="route-id">05 — Hà Nội · Lào Cai · Sapa</span>
+        <div class="route-title">Lào Cai/Sapa ↔ Hà Nội</div>
+        <div class="route-type">Cửa Khẩu Quốc Tế</div>
+        <div class="route-divider"></div>
+        <div class="route-meta">
+          <div class="route-meta-i"><label>Khoảng cách</label><span>~320 km</span></div>
+          <div class="route-meta-i"><label>Thời gian</label><span>~5–6 giờ</span></div>
+        </div>
+        <div class="route-services">
+          <span class="route-svc-tag">Xe ghép</span>
+          <span class="route-svc-tag">Bao xe</span>
+          <span class="route-svc-tag">Gửi hàng</span>
+        </div>
+        <button class="route-link" onclick="openModal('route','Lào Cai/Sapa ↔ Hà Nội')">Đặt tuyến này →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────── -->
+<section class="s-services" id="services">
+  <div class="wrap">
+    <span class="eyebrow sr">— Dịch Vụ Chính</span>
+    <h2 class="h-xl sr d1">Phục Vụ<br><span class="g">Đa Dạng Nhu Cầu.</span></h2>
+    <div class="services-grid">
+
+      <div class="svc-card sr d1">
+        <div class="svc-card-img img-fallback">
+          <img src="images/1.png" alt="Tài xế An Bình đón khách tại khách sạn" loading="lazy" width="400" height="200">
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-ico">🚗</div>
+          <div class="svc-card-title">Xe hợp đồng tuyến cố định</div>
+          <p class="svc-card-desc">Tiết kiệm, phù hợp đi một mình hoặc ít người, chạy hàng ngày theo lịch cố định.</p>
+          <button class="svc-card-btn" onclick="openModal('service','Xe ghép tuyến cố định')">Đặt xe ngay →</button>
+        </div>
+      </div>
+
+      <div class="svc-card sr d2">
+        <div class="svc-card-img img-fallback">
+          <img src="images/2.1.png" alt="Bao xe 4-7 chỗ cho gia đình nhóm bạn" loading="lazy" width="400" height="200">
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-ico">🚙</div>
+          <div class="svc-card-title">Bao xe 4–7 chỗ / Đưa Đón Riêng</div>
+          <p class="svc-card-desc">Riêng tư, chủ động thời gian, phù hợp gia đình, nhóm bạn, khách công tác.</p>
+          <button class="svc-card-btn" onclick="openModal('service','Bao xe 4–7 chỗ')">Bao xe ngay →</button>
+        </div>
+      </div>
+
+      <div class="svc-card sr d3">
+        <div class="svc-card-img img-fallback">
+          <img src="images/10.png" alt="Dịch vụ gửi hàng An Bình" loading="lazy" width="400" height="200">
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-ico">📦</div>
+          <div class="svc-card-title">Vận chuyển hàng hóa</div>
+          <p class="svc-card-desc">Nhận gửi hàng tuyến Thái Nguyên, Hà Nội, Yên Bái, Lào Cai, Sapa. Giao nhận linh hoạt.</p>
+          <button class="svc-card-btn" onclick="openModal('service','Vận chuyển hàng hóa')">Gửi hàng →</button>
+        </div>
+      </div>
+
+      <div class="svc-card sr d4">
+        <div class="svc-card-img img-fallback">
+          <img src="images/9.png" alt="Nội thất xe An Bình sạch và tiện nghi" loading="lazy" width="400" height="200">
+        </div>
+        <div class="svc-card-body">
+          <div class="svc-card-ico">🪑</div>
+          <div class="svc-card-title">Không gian xe / Trải nghiệm</div>
+          <p class="svc-card-desc">Nội thất sạch, sáng, ghế ngồi thoải mái. Điều hòa mát lạnh, hành trình dễ chịu trên mọi tuyến.</p>
+          <button class="svc-card-btn" onclick="openModal('service','Xe ghép tuyến cố định')">Xem trải nghiệm →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY ───────────────────────────────────── -->
+<section class="s-why" id="why">
+  <div class="wrap">
+    <span class="eyebrow sr">— Vì Sao Chọn Chúng Tôi</span>
+    <h2 class="h-xl sr d1">An Toàn.<br><span class="g">Đúng Giờ.</span><br>Tận Tâm.</h2>
+    <div class="why-grid">
+      <div class="why-left">
+        <div class="why-img sr">
+          <img src="images/5.png" alt="Tài xế An Bình tận tâm hỗ trợ hành khách" loading="lazy" width="600" height="240">
+        </div>
+        <div class="stats-grid">
+          <div class="stat sr d1"><div class="stat-val" data-count="15">0</div><div class="stat-lab">Năm kinh nghiệm</div></div>
+          <div class="stat sr d2"><div class="stat-val">24/7</div><div class="stat-lab">Hỗ trợ khách hàng</div></div>
+          <div class="stat sr d3"><div class="stat-val" data-count="5">0</div><div class="stat-lab">Tuyến chính</div></div>
+          <div class="stat sr d4"><div class="stat-val" data-count="3">0</div><div class="stat-lab">Chi nhánh Hà Nội</div></div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="feat sr">
+          <div class="feat-ico">🧑‍✈️</div>
+          <div><div class="feat-title">Tài xế lịch sự, hỗ trợ tận nơi</div><div class="feat-desc">Đội tài xế được đào tạo bài bản, luôn hỗ trợ khách từ điểm đón đến điểm trả. Hành lý được hỗ trợ nhanh chóng.</div></div>
+        </div>
+        <div class="feat sr d1">
+          <div class="feat-ico">🚘</div>
+          <div><div class="feat-title">Xe sạch, tiện nghi, bảo dưỡng định kỳ</div><div class="feat-desc">Đội xe hiện đại, được bảo dưỡng thường xuyên. Nội thất sạch sẽ, điều hòa mát lạnh, ghế rộng thoải mái.</div></div>
+        </div>
+        <div class="feat sr d2">
+          <div class="feat-ico">📋</div>
+          <div><div class="feat-title">Lịch trình linh hoạt, xác nhận rõ ràng</div><div class="feat-desc">Đặt chỗ nhanh qua hotline, nhân viên xác nhận giờ đi, điểm đón và điểm trả ngay sau khi đặt.</div></div>
+        </div>
+        <div class="feat sr d3">
+          <div class="feat-ico">💰</div>
+          <div><div class="feat-title">Giá minh bạch, không phát sinh mập mờ</div><div class="feat-desc">Báo giá rõ ràng trước chuyến đi. Không phát sinh chi phí ẩn. Thanh toán linh hoạt.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ──────────────────────────── -->
+<section class="s-how" id="how">
+  <div class="wrap">
+    <span class="eyebrow sr">— Quy Trình</span>
+    <h2 class="h-xl sr d1">Đặt Dịch Vụ<br><span class="g">3 Bước.</span></h2>
+  </div>
+  <div style="max-width:var(--max);margin:0 auto;padding:0 var(--px)">
+    <div class="how-steps">
+      <div class="step sr">
+        <div class="step-bg-num">01</div>
+        <span class="step-num">Bước 01</span>
+        <div class="step-title">Liên Hệ Đặt Chuyến</div>
+        <div class="step-desc">Gọi hotline <span class="step-tel">0985 21 24 21</span>, nhắn Zalo hoặc gửi yêu cầu qua form. Cho biết tuyến đường, ngày giờ và số hành khách.</div>
+      </div>
+      <div class="step sr d2">
+        <div class="step-bg-num">02</div>
+        <span class="step-num">Bước 02</span>
+        <div class="step-title">Xác Nhận Lịch & Điểm Đón</div>
+        <div class="step-desc">Nhân viên xác nhận chỗ ngồi, thông báo giờ khởi hành và điểm đón gần nhất. Nhanh, rõ ràng.</div>
+      </div>
+      <div class="step sr d3">
+        <div class="step-bg-num">03</div>
+        <span class="step-num">Bước 03</span>
+        <div class="step-title">Xe Đón Tận Nơi</div>
+        <div class="step-desc">Tài xế liên hệ trước khi tới. Hỗ trợ hành lý, an toàn đến điểm trả theo yêu cầu.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SCHEDULE ──────────────────────────────── -->
+<section class="s-schedule" id="schedule">
+  <div class="wrap">
+    <span class="eyebrow sr">— Lịch Khởi Hành</span>
+    <h2 class="h-xl sr d1">Giờ Chạy<br><span class="g">Hàng Ngày.</span></h2>
+    <p class="lead sr d2">Khởi hành từ Hà Nội. Chiều ngược lại — liên hệ hotline để xác nhận lịch.</p>
+    <div class="sched-tabs sr d2">
+      <button class="sched-tab on" data-r="tn">Thái Nguyên</button>
+      <button class="sched-tab"    data-r="yb">Yên Bái</button>
+      <button class="sched-tab"    data-r="lc">Lào Cai</button>
+      <button class="sched-tab"    data-r="sp">Sapa</button>
+    </div>
+    <div class="sched-grid sr d3" id="schedGrid"></div>
+    <p class="sched-note sr d4">
+      <span>ℹ️</span>
+      Lịch có thể thay đổi theo ngày lễ. Vui lòng gọi <a href="tel:0985212421">0985 21 24 21</a> để xác nhận.
+    </p>
+    <div style="margin-top:28px" class="sr d5">
+      <button class="btn btn-gold" onclick="openModal()" style="padding:15px 32px;font-size:14px;">Đặt chỗ theo lịch này</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── STRIPE 2 ──────────────────────────────── -->
+<div class="stripe-divider" aria-hidden="true">
+  <div class="stripe-divider-track">
+    <span class="stripe-divider-item">Vận Tải 360</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">by An Bình</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Tận Tâm Tận Tình Chu Đáo</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">by An Bình</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Tận Tâm Tận Tình Chu Đáo</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">by An Bình</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Tận Tâm Tận Tình Chu Đáo</span><span class="stripe-divider-sep">◆</span>
+  </div>
+</div>
+
+<!-- ── CTA BAND ──────────────────────────────── -->
+<section class="s-cta-band">
+  <div class="cta-band-bg">
+    <img src="images/7.png" alt="Xe An Bình chạy tuyến Tây Bắc" loading="lazy" width="1280" height="500">
+  </div>
+  <div class="wrap">
+    <div class="cta-band-inner">
+      <h2 class="cta-band-title sr left">Sẵn Sàng<br><span class="g">Lên Đường?</span></h2>
+      <div class="cta-band-right sr right">
+        <p class="cta-band-sub">Vận Tải 360 by An Bình phục vụ hành khách và hàng hóa mỗi ngày. Đặt chuyến nhanh, xác nhận rõ, hỗ trợ tận nơi.</p>
+        <div class="cta-band-btns">
+          <a href="tel:0985212421" class="btn btn-gold" style="padding:16px 28px;font-size:15px;">📞 Gọi 0985 21 24 21</a>
+          <a href="https://zalo.me/0985212421" target="_blank" rel="noopener" class="btn btn-zalo" style="padding:16px 28px;font-size:15px;">💬 Nhắn Zalo</a>
+          <button class="btn btn-dark" style="padding:16px 28px;font-size:15px;" onclick="openModal()">Đặt Chỗ</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────── -->
+<section class="s-about" id="about">
+  <div class="wrap">
+    <span class="eyebrow sr">— Về Dịch Vụ Vận Tải 360</span>
+    <h2 class="h-xl sr d1">Về Dịch Vụ<br><span class="g">Vận Tải 360.</span></h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="about-year-bg sr">2008</div>
+        <p class="about-desc sr d1">
+          <strong>Dịch vụ Vận Tải 360</strong> là một nhánh trong hệ sinh thái <strong>An Bình</strong>, tập trung vào vận chuyển hành khách, đưa đón tận nơi và hàng hóa trên các tuyến kết nối Thái Nguyên, Hà Nội, Yên Bái, Lào Cai, Sapa. Thành lập từ <strong>26/10/2008</strong>, hơn 15 năm phục vụ — chúng tôi hướng tới dịch vụ an toàn, đúng giờ, rõ giá và tận tâm trong từng hành trình.
+        </p>
+        <div class="values-grid sr d2">
+          <div class="val-card"><div class="val-name">An Toàn</div><div class="val-desc">Đội xe được bảo dưỡng định kỳ, tài xế chuyên nghiệp.</div></div>
+          <div class="val-card"><div class="val-name">Đúng Giờ</div><div class="val-desc">Lịch trình cố định, xuất phát đúng giờ mỗi ngày.</div></div>
+          <div class="val-card"><div class="val-name">Giá Minh Bạch</div><div class="val-desc">Báo giá rõ trước, không phát sinh chi phí ẩn.</div></div>
+          <div class="val-card"><div class="val-name">Hỗ Trợ 24/7</div><div class="val-desc">Đón trả linh hoạt, hỗ trợ xuyên suốt chuyến đi.</div></div>
+        </div>
+      </div>
+      <div class="about-visual sr right d2">
+        <div class="about-visual-img img-fallback">
+          <img src="images/2.png" alt="Đội xe Vận Tải 360 An Bình" loading="lazy" width="600" height="500">
+        </div>
+        <div class="about-visual-tag">AN BÌNH TOUR</div>
+        <div class="about-visual-stripe"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────── -->
+<section class="s-contact" id="contact">
+  <div class="wrap">
+    <span class="eyebrow sr">— Đặt Chuyến Ngay Hôm Nay</span>
+    <h2 class="h-xl sr d1">Đặt Dịch Vụ<br><span class="g">Vận Tải 360.</span></h2>
+    <div class="contact-grid">
+      <div class="contact-left sr">
+        <span class="eyebrow" style="margin-bottom:8px">Hotline 24/7</span>
+        <a href="tel:0985212421" class="contact-hotline">0985 21 24 21</a>
+        <p class="contact-note">Gọi hoặc nhắn Zalo để đặt chỗ nhanh nhất.</p>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-item-ico">📞</span>
+            <div><strong>Điện thoại văn phòng</strong>0985 21 24 21</div>
+          </div>
+          <div class="info-item">
+            <span class="info-item-ico">💬</span>
+            <div><strong>Zalo / Hỗ trợ</strong><a href="https://zalo.me/0985212421" target="_blank" rel="noopener" style="color:var(--gold)">0985 21 24 21</a></div>
+          </div>
+          <div class="info-item" style="margin-top:8px">
+            <span class="info-item-ico">🏢</span>
+            <div><strong>Hệ sinh thái An Bình</strong>Vận Tải 360 · GF An Bình · Vận Tải An Bình · An Bình Tour</div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-right sr d2">
+        <span class="eyebrow" style="margin-bottom:20px">Gửi Yêu Cầu</span>
+        <div id="contactFormWrap">
+          <form class="form-row" id="contactForm" novalidate>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-lbl" for="c-name">Họ và tên</label>
+                <input type="text" id="c-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+              </div>
+              <div class="form-group">
+                <label class="form-lbl" for="c-phone">Số điện thoại <span class="req">*</span></label>
+                <input type="tel" id="c-phone" class="form-ctrl" placeholder="09xx xxx xxx">
+                <span class="form-err-msg" id="c-phone-err">Vui lòng nhập số điện thoại</span>
+              </div>
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-lbl" for="c-route">Tuyến đường <span class="req">*</span></label>
+                <select id="c-route" class="form-ctrl">
+                  <option value="">Chọn tuyến...</option>
+                  <option>Thái Nguyên ↔ Hà Nội</option>
+                  <option>Yên Bái ↔ Hà Nội</option>
+                  <option>Yên Bái ↔ Lào Cai</option>
+                  <option>Lào Cai ↔ Sapa</option>
+                  <option>Lào Cai/Sapa ↔ Hà Nội</option>
+                </select>
+                <span class="form-err-msg" id="c-route-err">Vui lòng chọn tuyến</span>
+              </div>
+              <div class="form-group">
+                <label class="form-lbl" for="c-service">Loại dịch vụ</label>
+                <select id="c-service" class="form-ctrl">
+                  <option value="">Chọn dịch vụ...</option>
+                  <option>Xe ghép tuyến cố định</option>
+                  <option>Bao xe 4–7 chỗ</option>
+                  <option>Vận chuyển hàng hóa</option>
+                  <option>Đưa đón tận nơi</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-lbl" for="c-date">Ngày đi</label>
+                <input type="date" id="c-date" class="form-ctrl">
+              </div>
+              <div class="form-group">
+                <label class="form-lbl" for="c-time">Giờ đi</label>
+                <input type="time" id="c-time" class="form-ctrl">
+              </div>
+            </div>
+            <div class="form-2col">
+              <div class="form-group">
+                <label class="form-lbl" for="c-qty">Số người / số kiện hàng</label>
+                <input type="text" id="c-qty" class="form-ctrl" placeholder="VD: 2 người">
+              </div>
+              <div class="form-group">
+                <label class="form-lbl" for="c-pickup">Điểm đón</label>
+                <input type="text" id="c-pickup" class="form-ctrl" placeholder="Địa chỉ đón">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-lbl" for="c-dropoff">Điểm trả</label>
+              <input type="text" id="c-dropoff" class="form-ctrl" placeholder="Địa chỉ trả">
+            </div>
+            <div class="form-group">
+              <label class="form-lbl" for="c-note">Ghi chú</label>
+              <textarea id="c-note" class="form-ctrl" placeholder="Ngày đi, yêu cầu đặc biệt..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">📞 Gọi Xác Nhận: 0985 21 24 21</button>
+          </form>
+        </div>
+        <div class="form-success" id="contactSuccess">
+          <div style="font-size:48px;margin-bottom:16px">✅</div>
+          <h3>Đã nhận yêu cầu!</h3>
+          <p>Vận Tải 360 by An Bình sẽ liên hệ xác nhận trong thời gian sớm nhất. Hoặc gọi ngay để xác nhận nhanh hơn.</p>
+          <div class="form-success-btns">
+            <a href="tel:0985212421" class="btn btn-gold">📞 Gọi Ngay</a>
+            <a href="https://zalo.me/0985212421" target="_blank" rel="noopener" class="btn btn-zalo">💬 Nhắn Zalo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STRIPE 3 ──────────────────────────────── -->
+<div class="stripe-divider" style="animation-direction:reverse" aria-hidden="true">
+  <div class="stripe-divider-track" style="animation-direction:reverse">
+    <span class="stripe-divider-item">0985 21 24 21</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Đặt Chỗ Ngay</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360 by An Bình</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">0985 21 24 21</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Đặt Chỗ Ngay</span><span class="stripe-divider-sep">◆</span>
+    <span class="stripe-divider-item">Vận Tải 360 by An Bình</span><span class="stripe-divider-sep">◆</span>
+  </div>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────── -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <div class="nav-logo-box"><img src="images/logo-anbinh-new.jpg" alt="Logo An Bình" loading="lazy"></div>
+          <div class="footer-logo-text">
+            <span class="footer-logo-name">AN BÌNH TOUR</span>
+            <span class="footer-logo-sub">Vận Tải 360</span>
+          </div>
+        </div>
+        <p class="footer-about">Kết nối mọi nẻo đường. An toàn, đúng giờ, tận tâm từ năm 2008.</p>
+        <a href="tel:0985212421" class="btn btn-gold" style="padding:12px 22px;font-size:13px;">📞 0985 21 24 21</a>
+      </div>
+      <div>
+        <div class="footer-col-t">Tuyến Đường</div>
+        <ul class="footer-links">
+          <li><a href="#routes" onclick="openModal('route','Thái Nguyên ↔ Hà Nội')">Thái Nguyên ↔ Hà Nội</a></li>
+          <li><a href="#routes" onclick="openModal('route','Yên Bái ↔ Hà Nội')">Yên Bái ↔ Hà Nội</a></li>
+          <li><a href="#routes" onclick="openModal('route','Yên Bái ↔ Lào Cai')">Yên Bái ↔ Lào Cai</a></li>
+          <li><a href="#routes" onclick="openModal('route','Lào Cai ↔ Sapa')">Lào Cai ↔ Sapa</a></li>
+          <li><a href="#routes" onclick="openModal('route','Lào Cai/Sapa ↔ Hà Nội')">Lào Cai/Sapa ↔ Hà Nội</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-t">Dịch Vụ</div>
+        <ul class="footer-links">
+          <li><a href="#services" onclick="openModal('service','Xe ghép tuyến cố định')">Xe ghép tuyến cố định</a></li>
+          <li><a href="#services" onclick="openModal('service','Bao xe 4–7 chỗ')">Bao xe 4–7 chỗ</a></li>
+          <li><a href="#services" onclick="openModal('service','Vận chuyển hàng hóa')">Vận chuyển hàng hóa</a></li>
+          <li><a href="#services" onclick="openModal('service','Đưa đón tận nơi')">Đưa đón tận nơi</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-t">Liên Hệ</div>
+        <ul class="footer-links">
+          <li><a href="tel:0985212421">Hotline: 0985 21 24 21</a></li>
+          <li><a href="https://zalo.me/0985212421" target="_blank" rel="noopener">Zalo: 0985 21 24 21</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <p>© 2026 Công ty Cổ phần Thương Mại Đầu Tư An Bình. All rights reserved.</p>
+      <p style="color:var(--gold);font-weight:700">"Tận tâm trên mọi nẻo đường."</p>
+      <button class="footer-admin-link" onclick="openAdmin()" aria-label="Đăng nhập quản trị">· Admin ·</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ── ADMIN MODAL ───────────────────────────── -->
+<div class="modal-overlay" id="adminModal" onclick="handleAdminClick(event)">
+  <div class="modal-box admin" id="adminBox">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="adminTitle">Đăng nhập quản trị</div>
+        <div class="modal-sub" id="adminSub">Khu vực dành cho quản trị viên An Bình</div>
+      </div>
+      <button class="modal-close" onclick="closeAdmin()" aria-label="Đóng">✕</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="adminLoginWrap">
+      <form class="admin-login-form" id="adminLoginForm" novalidate>
+        <div class="form-group">
+          <label class="form-lbl" for="admin-pass">Mật khẩu</label>
+          <input type="password" id="admin-pass" class="form-ctrl" placeholder="Nhập mật khẩu quản trị" autocomplete="current-password">
+          <span class="admin-err" id="admin-err">Sai mật khẩu, vui lòng thử lại.</span>
+        </div>
+        <button type="submit" class="form-submit">Đăng nhập</button>
+      </form>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="adminDashWrap" style="display:none">
+      <div class="admin-toolbar">
+        <button class="admin-btn primary" onclick="loadBookings()">↻ Làm mới</button>
+        <a class="admin-btn" href="tel:0985212421">📞 Hotline: 0985 21 24 21</a>
+        <a class="admin-btn blue" href="https://zalo.me/0985212421" target="_blank" rel="noopener">💬 Zalo</a>
+        <a class="admin-btn ghost" id="admin-open-sheet" href="#" target="_blank" rel="noopener">📊 Google Sheet</a>
+        <button class="admin-btn ghost logout" onclick="logoutAdmin()">Đăng xuất</button>
+      </div>
+
+      <div class="admin-stats" id="admin-stats" style="display:none"></div>
+
+      <div class="admin-search-row" id="admin-search-row" style="display:none">
+        <input type="text" id="admin-search" class="admin-search" placeholder="🔍 Tìm theo tên, số điện thoại, tuyến, ghi chú…">
+      </div>
+
+      <div class="admin-state" id="admin-state"></div>
+      <div class="admin-list" id="admin-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BOOKING MODAL ─────────────────────────── -->
+<div class="modal-overlay" id="bookingModal" onclick="handleModalClick(event)">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title">Đặt dịch vụ Vận Tải 360</div>
+        <div class="modal-sub">by An Bình • Hotline 0985 21 24 21</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Đóng">✕</button>
+    </div>
+
+    <div id="modalFormWrap">
+      <form class="form-row" id="modalForm" novalidate>
+        <div class="form-2col">
+          <div class="form-group">
+            <label class="form-lbl" for="m-name">Họ và tên</label>
+            <input type="text" id="m-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="m-phone">Số điện thoại <span class="req">*</span></label>
+            <input type="tel" id="m-phone" class="form-ctrl" placeholder="09xx xxx xxx">
+            <span class="form-err-msg" id="m-phone-err">Vui lòng nhập số điện thoại</span>
+          </div>
+        </div>
+        <div class="form-2col">
+          <div class="form-group">
+            <label class="form-lbl" for="m-route">Tuyến đường <span class="req">*</span></label>
+            <select id="m-route" class="form-ctrl">
+              <option value="">Chọn tuyến...</option>
+              <option>Thái Nguyên ↔ Hà Nội</option>
+              <option>Yên Bái ↔ Hà Nội</option>
+              <option>Yên Bái ↔ Lào Cai</option>
+              <option>Lào Cai ↔ Sapa</option>
+              <option>Lào Cai/Sapa ↔ Hà Nội</option>
+            </select>
+            <span class="form-err-msg" id="m-route-err">Vui lòng chọn tuyến</span>
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="m-service">Loại dịch vụ</label>
+            <select id="m-service" class="form-ctrl">
+              <option value="">Chọn dịch vụ...</option>
+              <option>Xe ghép tuyến cố định</option>
+              <option>Bao xe 4–7 chỗ</option>
+              <option>Vận chuyển hàng hóa</option>
+              <option>Đưa đón tận nơi</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-2col">
+          <div class="form-group">
+            <label class="form-lbl" for="m-date">Ngày đi</label>
+            <input type="date" id="m-date" class="form-ctrl">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="m-time">Giờ đi</label>
+            <input type="time" id="m-time" class="form-ctrl">
+          </div>
+        </div>
+        <div class="form-2col">
+          <div class="form-group">
+            <label class="form-lbl" for="m-qty">Số người / số kiện</label>
+            <input type="text" id="m-qty" class="form-ctrl" placeholder="VD: 2 người">
+          </div>
+          <div class="form-group">
+            <label class="form-lbl" for="m-pickup">Điểm đón</label>
+            <input type="text" id="m-pickup" class="form-ctrl" placeholder="Địa chỉ đón">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-lbl" for="m-dropoff">Điểm trả</label>
+          <input type="text" id="m-dropoff" class="form-ctrl" placeholder="Địa chỉ trả">
+        </div>
+        <div class="form-group">
+          <label class="form-lbl" for="m-note">Ghi chú</label>
+          <textarea id="m-note" class="form-ctrl" rows="2" placeholder="Yêu cầu đặc biệt..."></textarea>
+        </div>
+      </form>
+      <div class="modal-footer">
+        <button class="btn btn-gold" style="justify-content:center" onclick="submitModal()">Gửi yêu cầu</button>
+        <a href="tel:0985212421" class="btn btn-ghost" style="justify-content:center">📞 Gọi ngay</a>
+        <a href="https://zalo.me/0985212421" target="_blank" rel="noopener" class="btn btn-zalo" style="justify-content:center">💬 Zalo</a>
+      </div>
+    </div>
+
+    <div class="modal-success" id="modalSuccess">
+      <div class="tick">✅</div>
+      <h3>Đã nhận yêu cầu!</h3>
+      <p id="modalSuccessMsg">Vận Tải 360 by An Bình sẽ liên hệ xác nhận sớm nhất.</p>
+      <div class="modal-success-btns">
+        <a href="tel:0985212421" class="btn btn-gold">📞 Gọi Ngay</a>
+        <a href="https://zalo.me/0985212421" target="_blank" rel="noopener" class="btn btn-zalo">💬 Nhắn Zalo</a>
+        <button class="btn btn-ghost" onclick="closeModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MOBILE STICKY BAR ─────────────────────── -->
+<div class="sticky-bar" id="stickyBar">
+  <a href="tel:0985212421" class="sticky-btn sticky-call" aria-label="Gọi ngay 0985 21 24 21">
+    📞 Gọi Ngay
+  </a>
+  <a href="https://zalo.me/0985212421" target="_blank" rel="noopener" class="sticky-btn sticky-zalo" aria-label="Nhắn Zalo">
+    💬 Zalo
+  </a>
+  <button class="sticky-btn sticky-book" onclick="openModal()" aria-label="Đặt chuyến">
+    🗓 Đặt Chuyến
+  </button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
+
