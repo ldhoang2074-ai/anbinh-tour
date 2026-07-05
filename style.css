@@ -99,7 +99,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 /* ─── HERO ───────────────────────────────────────── */
 .hero {
   min-height: 100svh; padding-top: 76px;
-  background: url('1.png') center/cover no-repeat; position: relative; overflow: hidden;
+  background: url('1.png') 30% center/cover no-repeat; position: relative; overflow: hidden;
   display: flex; align-items: center;
 }
 .hero::before { content: ''; position: absolute; inset: 0; background: rgba(4,10,4,.72); z-index: 0; }
@@ -279,6 +279,14 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .info-item { display: grid; grid-template-columns: 22px 1fr; gap: 10px; font-size: 13px; color: var(--muted2); align-items: start; line-height: 1.55; }
 .info-item-ico { color: var(--gold); font-size: 14px; padding-top: 1px; }
 .info-item strong { display: block; color: var(--white); font-weight: 700; margin-bottom: 2px; }
+.zalo-group { margin-top: 28px; padding-top: 28px; border-top: 1px solid var(--border); display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+.zalo-group-qr { width: 116px; height: 116px; border-radius: 10px; background: #fff; padding: 7px; flex-shrink: 0; }
+.zalo-group-qr img { width: 100%; height: 100%; display: block; }
+.zalo-group-info { flex: 1; min-width: 190px; }
+.zalo-group-t { font-size: 14px; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+.zalo-group-d { font-size: 12.5px; color: var(--muted2); line-height: 1.55; margin-bottom: 12px; }
+.zalo-group-btn { display: inline-flex; align-items: center; gap: 7px; background: #0068ff; color: #fff; font-size: 13px; font-weight: 700; padding: 9px 16px; border-radius: 8px; text-decoration: none; transition: transform .15s, background .15s; }
+.zalo-group-btn:hover { background: #0059db; transform: translateY(-1px); }
 .contact-right { background: var(--bg-1); padding: clamp(36px,4vw,56px); }
 .form-row { display: flex; flex-direction: column; gap: 10px; }
 .form-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -445,8 +453,12 @@ textarea.form-ctrl { resize: vertical; min-height: 80px; }
   body { padding-bottom: 62px; }
   .form-2col { grid-template-columns: 1fr; }
 }
+@media (max-width: 900px) {
+  .hero { background-position: 78% center; }
+}
 @media (max-width: 600px) {
   .hero-img-col { display: none; }
+  .hero { background-position: 82% center; }
 }
 @media (max-width: 540px) {
   .routes-grid { grid-template-columns: 1fr; }
