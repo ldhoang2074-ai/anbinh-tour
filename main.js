@@ -426,10 +426,10 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
   //    false = bản chính thức: chỉ đơn thật đã đồng ý + thông báo nền trung thực.
   const SP_USE_MOCK = false;
 
-  const MAX = 6;                     // tối đa 6 popup / phiên
-  const FIRST_MIN = 2000, FIRST_MAX = 10000;    // popup đầu sau 2–10s
-  const VISIBLE = 5000;              // mỗi popup hiện 5s
-  const GAP_MIN = 25000, GAP_MAX = 55000;       // cách nhau 25–55s
+  const MAX = 300;                   // gần như liên tục trong suốt phiên
+  const FIRST_MIN = 2000, FIRST_MAX = 5000;     // popup đầu sau 2–5s
+  const VISIBLE = 7000;              // mỗi popup hiện 7s
+  const GAP_MIN = 7000, GAP_MAX = 9000;         // liên tục mỗi 7–9s
   const NEW_DELAY_MIN = 3000, NEW_DELAY_MAX = 5000; // đơn thật hiện sau 3–5s
   const PRIORITY_WINDOW = 120000;    // ưu tiên đơn thật trong 2 phút
   const MAX_AGE_MS = 24 * 3600 * 1000; // chỉ hiện đơn thật ≤ 24 giờ
@@ -506,7 +506,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
       }
     }
     const realAvail = realPool.filter(r => shownReal.indexOf(r.id) === -1 && fresh(r));
-    const fbAvail = FALLBACK.filter(f => shownFb.indexOf(f.id) === -1);
+    let fbAvail = FALLBACK.filter(f => shownFb.indexOf(f.id) === -1);
+    // Thông báo nền lặp tuần hoàn: hết thì làm mới để luôn liên tục
+    if (!fbAvail.length) {
+      shownFb = []; sessionStorage.setItem(SS_SHOWN_FB, '[]');
+      fbAvail = FALLBACK.filter(f => regionOf(f) !== lastRegion);
+      if (!fbAvail.length) fbAvail = FALLBACK.slice();
+    }
     const notLastRegion = list => {
       const ok = list.filter(it => regionOf(it) !== lastRegion);
       return ok.length ? ok : list;   // chỉ cho trùng khi hết lựa chọn khác
@@ -514,12 +520,18 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     // 1) đơn thật đang trong cửa sổ ưu tiên 2 phút → hiển thị trước
     const priority = realAvail.filter(r => r.priorityUntil > now);
     if (priority.length) return rnd(notLastRegion(priority));
-    // 2) quy tắc đan xen A/B
-    const canFb = fbAvail.length > 0 && consecFb < 2;
+    // 2) quy tắc đan xen A/B (đơn thật ưu tiên; khi chưa có đơn thật → nền chạy liên tục)
+    const canFb = fbAvail.length > 0 && (consecFb < 2 || realAvail.length === 0);
     if (realAvail.length && canFb && lastType === 'real' && Math.random() < 0.5) return rnd(notLastRegion(fbAvail));
     if (realAvail.length) return rnd(notLastRegion(realAvail));
-    if (canFb) return rnd(notLastRegion(fbAvail));
+    if (fbAvail.length) return rnd(notLastRegion(fbAvail));
     return null;
+  }
+
+  function getStack() {
+    let s = document.getElementById('sp-stack');
+    if (!s) { s = document.createElement('div'); s.id = 'sp-stack'; s.className = 'sp-stack'; document.body.appendChild(s); }
+    return s;
   }
 
   function buildToast() {
@@ -534,7 +546,7 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         '<div class="sp-body"><div class="sp-msg"></div><div class="sp-time"></div></div>' +
       '</div>';
     el.querySelector('.sp-close').addEventListener('click', onClose);
-    document.body.appendChild(el);
+    getStack().appendChild(el);
     return el;
   }
 
@@ -543,11 +555,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     sessionStorage.setItem(SS_CLOSED, '1');
     if (timer) clearTimeout(timer);
     if (pollTimer) clearTimeout(pollTimer);
-    if (toast) toast.classList.remove('sp-show');
+    // Ẩn tất cả thông báo đang hiện
+    const s = document.getElementById('sp-stack');
+    if (s) s.querySelectorAll('.sp-toast').forEach(function (t) { t.classList.remove('sp-show'); t.classList.add('sp-hide'); });
   }
 
   function show(it) {
-    if (!toast) toast = buildToast();
+    const toast = buildToast();
     const msg = toast.querySelector('.sp-msg');
     const timeEl = toast.querySelector('.sp-time');
     const icoEl = toast.querySelector('.sp-ico');
@@ -562,12 +576,16 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     } else {
       icoEl.textContent = it.icon;
       msg.innerHTML = it.html;               // nội dung tĩnh do ta soạn, an toàn
-      timeEl.textContent = it.sub;
+      timeEl.innerHTML = '<span class="sp-dot"></span>' + esc(it.sub);
       timeEl.style.display = '';
     }
     void toast.offsetWidth;
     toast.classList.add('sp-show');
-    setTimeout(() => { if (!closed) toast.classList.remove('sp-show'); }, VISIBLE);
+    setTimeout(function () {
+      toast.classList.remove('sp-show');
+      toast.classList.add('sp-hide');
+      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 500);
+    }, VISIBLE);
   }
 
   function loop() {
@@ -580,10 +598,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
       else { shownFb.push(it.id); sessionStorage.setItem(SS_SHOWN_FB, JSON.stringify(shownFb)); consecFb++; }
       count++; lastType = it.type; lastRegion = regionOf(it);
       if (count >= MAX) return;
-      scheduleLoop(VISIBLE + randBetween(GAP_MIN, GAP_MAX));
+      // Nhịp tính từ lúc popup này hiện → cái kế tiếp sau đúng 7–9s (liên tục)
+      scheduleLoop(randBetween(GAP_MIN, GAP_MAX));
     } else {
-      // chưa có gì để hiện — thử lại sau (đơn realtime có thể đến)
-      scheduleLoop(15000);
+      // chưa có gì để hiện — thử lại sớm (đơn realtime có thể đến)
+      scheduleLoop(randBetween(GAP_MIN, GAP_MAX));
     }
   }
 

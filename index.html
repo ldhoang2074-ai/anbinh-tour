@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
   <meta name="description" content="Dịch vụ Vận Tải 360 by An Bình phục vụ xe ghép, bao xe, đưa đón tận nơi và vận chuyển hàng hóa tuyến Thái Nguyên, Hà Nội, Yên Bái, Lào Cai, Sapa. Hotline 0985 21 24 21.">
   <meta property="og:title" content="Dịch vụ Vận Tải 360 An Bình | Xe ghép, bao xe, gửi hàng">
   <meta property="og:description" content="Xe ghép, bao xe, đưa đón tận nơi và vận chuyển hàng hóa. Hotline 0985 21 24 21.">
@@ -501,7 +503,10 @@
             <div class="form-2col">
               <div class="form-group">
                 <label class="form-lbl" for="c-name">Họ và tên</label>
-                <input type="text" id="c-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+                <div class="name-row">
+                  <select id="c-title" class="form-ctrl name-title" aria-label="Danh xưng"><option>Anh</option><option>Chị</option></select>
+                  <input type="text" id="c-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+                </div>
               </div>
               <div class="form-group">
                 <label class="form-lbl" for="c-phone">Số điện thoại <span class="req">*</span></label>
@@ -561,6 +566,10 @@
               <label class="form-lbl" for="c-note">Ghi chú</label>
               <textarea id="c-note" class="form-ctrl" placeholder="Ngày đi, yêu cầu đặc biệt..."></textarea>
             </div>
+            <label class="consent-row">
+              <input type="checkbox" id="c-allowsp">
+              <span>Cho phép An Bình hiển thị <b>tên gọi và khu vực đã được rút gọn</b> để thông báo đặt xe.</span>
+            </label>
             <button type="submit" class="form-submit">📞 Gọi Xác Nhận: 0985 21 24 21</button>
           </form>
         </div>
@@ -703,7 +712,10 @@
         <div class="form-2col">
           <div class="form-group">
             <label class="form-lbl" for="m-name">Họ và tên</label>
-            <input type="text" id="m-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+            <div class="name-row">
+              <select id="m-title" class="form-ctrl name-title" aria-label="Danh xưng"><option>Anh</option><option>Chị</option></select>
+              <input type="text" id="m-name" class="form-ctrl" placeholder="Nguyễn Văn A">
+            </div>
           </div>
           <div class="form-group">
             <label class="form-lbl" for="m-phone">Số điện thoại <span class="req">*</span></label>
@@ -763,6 +775,10 @@
           <label class="form-lbl" for="m-note">Ghi chú</label>
           <textarea id="m-note" class="form-ctrl" rows="2" placeholder="Yêu cầu đặc biệt..."></textarea>
         </div>
+        <label class="consent-row">
+          <input type="checkbox" id="m-allowsp">
+          <span>Cho phép An Bình hiển thị <b>tên gọi và khu vực đã được rút gọn</b> để thông báo đặt xe.</span>
+        </label>
       </form>
       <div class="modal-footer">
         <button class="btn btn-gold" style="justify-content:center" onclick="submitModal()">Gửi yêu cầu</button>
@@ -797,6 +813,8 @@
   </button>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="supabase-config.js"></script>
 <script src="main.js"></script>
 </body>
 </html>
