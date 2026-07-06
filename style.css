@@ -217,6 +217,44 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .s-how .eyebrow { color: var(--gold); }
 .s-how .h-xl { color: #080808; }
 .s-how .h-xl .g { color: var(--gold); }
+
+/* ─── SECTION MAP ─────────────────────────────────── */
+.s-map { background: var(--bg-0); padding: var(--py) 0; }
+.s-map .h-xl { color: var(--white); }
+.map-lead { margin-top: 22px; max-width: 620px; font-size: clamp(15px,1.7vw,17px); color: var(--muted2); line-height: 1.7; }
+.map-wrap { position: relative; margin-top: 44px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+#abMap { width: 100%; height: 480px; background: #0a0f0a; z-index: 1; }
+.map-badge {
+  position: absolute; top: 14px; right: 14px; z-index: 500;
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(8,14,8,.86); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--gold); border-radius: 30px; padding: 8px 14px;
+  font-size: 12.5px; font-weight: 700; color: var(--white);
+}
+.map-badge-dot { width: 9px; height: 9px; border-radius: 50%; background: #2db42d; box-shadow: 0 0 0 0 rgba(45,180,45,.6); animation: sp-blink 1.4s ease-in-out infinite; }
+.map-badge #mapCount { color: var(--gold-light); }
+.map-near {
+  position: absolute; bottom: 14px; right: 14px; z-index: 500;
+  background: var(--gold); color: #062a06; border: none; cursor: pointer;
+  font-family: inherit; font-size: 13px; font-weight: 800; padding: 10px 16px; border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4); transition: transform .15s, background .15s;
+}
+.map-near:hover { background: var(--gold-light); transform: translateY(-1px); }
+.map-near:disabled { opacity: .6; cursor: default; transform: none; }
+.map-note { margin-top: 18px; font-size: 13px; color: var(--muted); line-height: 1.7; max-width: 760px; }
+.map-note b { color: var(--muted2); }
+.map-note a { color: var(--gold-light); font-weight: 700; }
+.map-book-link { background: none; border: none; padding: 0; color: var(--gold-light); font-weight: 700; font-family: inherit; font-size: inherit; cursor: pointer; text-decoration: underline; }
+.ab-car { display: block; width: 30px; height: 30px; filter: drop-shadow(0 2px 3px rgba(0,0,0,.55)); will-change: transform; }
+.ab-dot { width: 14px; height: 14px; border-radius: 50%; background: #2db42d; box-shadow: 0 0 9px rgba(45,180,45,.85); animation: ab-pulse 1.8s ease-in-out infinite; }
+.ab-dot.sm { width: 11px; height: 11px; }
+.ab-dot.lg { width: 17px; height: 17px; }
+@keyframes ab-pulse { 0%,100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgba(45,180,45,.55); } 50% { transform: scale(.68); opacity: .5; box-shadow: 0 0 0 9px rgba(45,180,45,0); } }
+.ab-me { width: 18px; height: 18px; border-radius: 50%; background: #2db42d; border: 3px solid #fff; box-shadow: 0 0 0 4px rgba(45,180,45,.35), 0 2px 6px rgba(0,0,0,.5); }
+.leaflet-container { font-family: inherit; }
+.leaflet-control-attribution { background: rgba(8,8,8,.7) !important; color: #6b7280 !important; font-size: 10px !important; }
+.leaflet-control-attribution a { color: #9ca3af !important; }
+@media (max-width: 767px) { #abMap { height: 380px; } .map-near { font-size: 12px; padding: 9px 13px; } }
 .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 96px; }
 .step { background: #fff; padding: clamp(36px,4vw,60px) clamp(26px,3vw,44px); position: relative; overflow: hidden; border-top: 4px solid var(--gold); box-shadow: 0 2px 0 0 rgba(0,0,0,.06); }
 .step-bg-num { position: absolute; top: 10px; right: 16px; font-size: clamp(100px,14vw,180px); font-weight: 900; color: rgba(45,180,45,.07); line-height: 1; user-select: none; letter-spacing: -.05em; }
