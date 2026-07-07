@@ -293,18 +293,76 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ── Schedule ──────────────────────────────────
+const hourly = (a, b) => { const r = []; for (let h = a; h <= b; h++) r.push((h < 10 ? '0' + h : h) + ':00'); return r; };
 const sched = {
-  tn: { times: ['05:30','06:00','06:30','07:00','07:30','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00'], note: 'Từ HN' },
-  yb: { times: ['05:00','06:00','07:00','08:00','09:00','10:30','12:00','13:30','15:00','16:30'], note: 'Từ HN' },
-  lc: { times: ['05:00','06:00','07:00','08:30','10:00','12:00','14:00','16:00','18:00','20:30','22:00'], note: 'Từ HN' },
-  sp: { times: ['05:00','06:00','07:30','09:00','11:00','13:00','15:00','17:00','20:00','22:00'], note: 'Qua LC' },
+  tn: { dest: 'Thái Nguyên', out: hourly(6, 21), back: hourly(5, 21), backLabel: 'Thái Nguyên' },
+  yb: { dest: 'Yên Bái', out: hourly(6, 21), back: hourly(4, 21), backLabel: 'Yên Bái' },
+  lc: { dest: 'Lào Cai', out: hourly(6, 21), back: hourly(4, 21), backLabel: 'Lào Cai' },
+  sp: { dest: 'Sa Pa', out: hourly(6, 21), back: hourly(5, 21), backLabel: 'Sa Pa', via: true },
 };
+let schedCur = 'tn', schedDir = 0;   // 0 = từ Hà Nội, 1 = chiều về
+const SCHED_GROUPS = [
+  { key: 'sang',  label: 'Sáng',  ico: '<svg class="ic" viewBox="0 0 24 24"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="2" x2="12" y2="9"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="23" y1="22" x2="1" y2="22"/><polyline points="8 6 12 2 16 6"/></svg>', from: 0, to: 720 },
+  { key: 'chieu', label: 'Chiều', ico: '<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>', from: 720, to: 1080 },
+  { key: 'toi',   label: 'Tối',   ico: '<svg class="ic" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>', from: 1080, to: 1440 },
+];
+const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+
+function setSchedDir(d) { schedDir = d; renderSched(schedCur); }
+
 function renderSched(r) {
+  schedCur = r;
   const g = document.getElementById('schedGrid');
-  const { times, note } = sched[r];
-  g.innerHTML = times.map(t =>
-    `<div class="time-card"><div class="time-val">${t}</div><div class="time-note">${note}</div></div>`
-  ).join('');
+  const cfg = sched[r];
+  const times = schedDir === 0 ? cfg.out : cfg.back;
+  const origin = schedDir === 0 ? 'Hà Nội' : cfg.dest;
+  const target = schedDir === 0 ? cfg.dest : 'Hà Nội';
+
+  // nút chọn chiều
+  const dirEl = document.getElementById('schedDir');
+  if (dirEl) {
+    dirEl.innerHTML =
+      '<button type="button" class="sched-dir-btn' + (schedDir === 0 ? ' on' : '') + '" onclick="setSchedDir(0)">Hà Nội → ' + cfg.dest + '</button>' +
+      '<button type="button" class="sched-dir-btn' + (schedDir === 1 ? ' on' : '') + '" onclick="setSchedDir(1)">' + cfg.dest + ' → Hà Nội</button>';
+  }
+
+  // chuyến sắp chạy tiếp theo (theo giờ hiện tại)
+  const now = new Date();
+  const nowMin = now.getHours() * 60 + now.getMinutes();
+  let nextIdx = times.findIndex(t => toMin(t) >= nowMin);
+  let nextBadge;
+  if (nextIdx === -1) nextBadge = 'Hết chuyến hôm nay';
+  else { const dm = toMin(times[nextIdx]) - nowMin; nextBadge = dm <= 1 ? 'Đang khởi hành' : (dm < 60 ? 'Chuyến tới sau ' + dm + '′' : 'Chuyến tới ' + times[nextIdx]); }
+
+  // tuyến header
+  const routeEl = document.getElementById('schedRoute');
+  if (routeEl) {
+    const via = cfg.via ? '<span class="sched-via">Qua Lào Cai</span>' : '';
+    routeEl.innerHTML =
+      '<svg class="ic sched-route-ico" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>' +
+      '<span class="sched-route-end">' + origin + '</span>' +
+      '<span class="sched-route-line"></span>' +
+      '<span class="sched-route-end">' + target + '</span>' + via +
+      '<span class="sched-count">' + nextBadge + '</span>';
+  }
+
+  // nhóm theo buổi
+  let html = '';
+  SCHED_GROUPS.forEach(gr => {
+    const items = times.map((t, i) => ({ t, i })).filter(x => { const m = toMin(x.t); return m >= gr.from && m < gr.to; });
+    if (!items.length) return;
+    html += '<div class="sched-group">';
+    html += '<div class="sched-group-h"><span class="sg-ico">' + gr.ico + '</span>' + gr.label + '<span class="dash"></span></div>';
+    html += '<div class="sched-grid">';
+    html += items.map(x => {
+      const isNext = x.i === nextIdx;
+      return '<div class="time-card' + (isNext ? ' next' : '') + '">' +
+        (isNext ? '<span class="time-next-tag"><span class="d"></span>Sắp chạy</span>' : '') +
+        '<div class="time-val">' + x.t + '</div></div>';
+    }).join('');
+    html += '</div></div>';
+  });
+  g.innerHTML = html;
 }
 renderSched('tn');
 document.querySelectorAll('.sched-tab').forEach(btn => {
@@ -440,15 +498,21 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 
   // ── Loại B: thông báo nền TRUNG THỰC (tình trạng tuyến / lịch xe / mức độ quan tâm).
   //    Không giả danh khách cụ thể. “region” chỉ dùng để tránh trùng địa phương liên tiếp.
+  const ICO_VAN = '<svg class="ic" viewBox="0 0 24 24"><path d="M10 17h4V5H2v12h3"/><path d="M14 9h4l3 3v5h-3"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>';
+  const ICO_CAL = '<svg class="ic" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>';
+  const ICO_PIN = '<svg class="ic" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>';
+  const ICO_CAR = '<svg class="ic" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></svg>';
+  const ICO_PHONE = '<svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>';
+  const ICO_CHECK = '<svg class="ic" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
   const FALLBACK = [
-    { id: 'fb1', icon: '🚐', html: 'Tuyến <span class="sp-loc">Lào Cai – Hà Nội</span> đang được nhiều khách quan tâm hôm nay', sub: 'Tình trạng tuyến', region: 'Lào Cai' },
-    { id: 'fb2', icon: '🗓️', html: 'An Bình đang nhận lịch tuyến <span class="sp-loc">Thái Nguyên – Hà Nội</span>', sub: 'Nhận lịch trong ngày', region: 'Thái Nguyên' },
-    { id: 'fb3', icon: '🚐', html: 'Tuyến <span class="sp-loc">Yên Bái – Lào Cai</span> đang còn lịch trong ngày', sub: 'Còn lịch hôm nay', region: 'Yên Bái' },
-    { id: 'fb4', icon: '📍', html: 'Nhiều khách đang xem lịch xe đi <span class="sp-loc">Sa Pa</span>', sub: 'Được quan tâm', region: 'Sa Pa' },
-    { id: 'fb5', icon: '🚘', html: 'Dịch vụ <span class="sp-loc">đón tận nơi</span> đang được khách hàng quan tâm', sub: 'Được quan tâm', region: 'đón tận nơi' },
-    { id: 'fb6', icon: '☎️', html: 'An Bình đang hỗ trợ <span class="sp-loc">kiểm tra lịch xe nhanh</span> qua hotline', sub: 'Hỗ trợ nhanh', region: 'hotline' },
-    { id: 'fb7', icon: '🚐', html: 'Tuyến <span class="sp-loc">Hà Nội – Lào Cai</span> đang có lượt kiểm tra lịch mới', sub: 'Lượt kiểm tra mới', region: 'Hà Nội' },
-    { id: 'fb8', icon: '🗓️', html: 'Hôm nay có nhiều khách quan tâm <span class="sp-loc">dịch vụ xe hợp đồng</span>', sub: 'Được quan tâm', region: 'xe hợp đồng' },
+    { id: 'fb1', icon: ICO_VAN, html: 'Tuyến <span class="sp-loc">Lào Cai – Hà Nội</span> đang được nhiều khách quan tâm hôm nay', sub: 'Tình trạng tuyến', region: 'Lào Cai' },
+    { id: 'fb2', icon: ICO_CAL, html: 'An Bình đang nhận lịch tuyến <span class="sp-loc">Thái Nguyên – Hà Nội</span>', sub: 'Nhận lịch trong ngày', region: 'Thái Nguyên' },
+    { id: 'fb3', icon: ICO_VAN, html: 'Tuyến <span class="sp-loc">Yên Bái – Lào Cai</span> đang còn lịch trong ngày', sub: 'Còn lịch hôm nay', region: 'Yên Bái' },
+    { id: 'fb4', icon: ICO_PIN, html: 'Nhiều khách đang xem lịch xe đi <span class="sp-loc">Sa Pa</span>', sub: 'Được quan tâm', region: 'Sa Pa' },
+    { id: 'fb5', icon: ICO_CAR, html: 'Dịch vụ <span class="sp-loc">đón tận nơi</span> đang được khách hàng quan tâm', sub: 'Được quan tâm', region: 'đón tận nơi' },
+    { id: 'fb6', icon: ICO_PHONE, html: 'An Bình đang hỗ trợ <span class="sp-loc">kiểm tra lịch xe nhanh</span> qua hotline', sub: 'Hỗ trợ nhanh', region: 'hotline' },
+    { id: 'fb7', icon: ICO_VAN, html: 'Tuyến <span class="sp-loc">Hà Nội – Lào Cai</span> đang có lượt kiểm tra lịch mới', sub: 'Lượt kiểm tra mới', region: 'Hà Nội' },
+    { id: 'fb8', icon: ICO_CAL, html: 'Hôm nay có nhiều khách quan tâm <span class="sp-loc">dịch vụ xe hợp đồng</span>', sub: 'Được quan tâm', region: 'xe hợp đồng' },
   ];
 
   const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
@@ -568,13 +632,13 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     if (it.type === 'real') {
       const loc = it.district ? it.district + ', ' + it.province : it.province;
       const who = it.name ? esc(it.name) : 'Một khách hàng';
-      icoEl.textContent = '✅';
+      icoEl.innerHTML = ICO_CHECK;
       msg.innerHTML = '<span class="sp-name">' + who + '</span> tại <span class="sp-loc">' + esc(loc) + '</span> <span class="sp-ok">vừa đặt xe thành công</span>';
       const t = relTime(it.createdAt);
       timeEl.textContent = t;
       timeEl.style.display = t ? '' : 'none';
     } else {
-      icoEl.textContent = it.icon;
+      icoEl.innerHTML = it.icon;
       msg.innerHTML = it.html;               // nội dung tĩnh do ta soạn, an toàn
       timeEl.innerHTML = '<span class="sp-dot"></span>' + esc(it.sub);
       timeEl.style.display = '';
