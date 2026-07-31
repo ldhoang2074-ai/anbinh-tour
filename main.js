@@ -408,14 +408,16 @@ function setFieldErr(id, errId, show) {
 }
 
 function submitModal() {
+  const nameEl = document.getElementById('m-name');
+  const name = nameEl.value.trim();
   const phone = document.getElementById('m-phone').value.trim();
   const route = document.getElementById('m-route').value;
   let valid = true;
+  if (!name) { setFieldErr('m-name','m-name-err',true); valid = false; } else { setFieldErr('m-name','m-name-err',false); }
   if (!validatePhone(phone)) { setFieldErr('m-phone','m-phone-err',true); valid = false; } else { setFieldErr('m-phone','m-phone-err',false); }
   if (!route) { setFieldErr('m-route','m-route-err',true); valid = false; } else { setFieldErr('m-route','m-route-err',false); }
   if (!valid) return;
 
-  const name    = document.getElementById('m-name').value.trim() || '(chưa cung cấp)';
   const service = document.getElementById('m-service').value || '(chưa chọn)';
   const date    = document.getElementById('m-date').value || '(chưa chọn)';
   const time    = document.getElementById('m-time').value || '(chưa chọn)';
@@ -433,9 +435,8 @@ function submitModal() {
     diemDon: pickup, diemTra: dropoff, ghiChu: note,
   });
 
-  const mTitleEl = document.getElementById('m-title');
   const mAllowEl = document.getElementById('m-allowsp');
-  sendSocialProof(mTitleEl ? mTitleEl.value : '', name === '(chưa cung cấp)' ? '' : name, route, !!(mAllowEl && mAllowEl.checked));
+  sendSocialProof('', name, route, !!(mAllowEl && mAllowEl.checked));
 
   if (navigator.clipboard) navigator.clipboard.writeText(msg).catch(() => {});
   document.getElementById('modalSuccessMsg').textContent = `Cảm ơn ${name !== '(chưa cung cấp)' ? name : 'bạn'}! Chúng tôi sẽ liên hệ số ${phone} để xác nhận chuyến ${route} sớm nhất.`;
@@ -446,24 +447,27 @@ function submitModal() {
 // ── Contact Form ──────────────────────────────
 document.getElementById('contactForm').addEventListener('submit', function(e) {
   e.preventDefault();
+  const nameEl = document.getElementById('c-name');
+  const name = nameEl.value.trim();
   const phone = document.getElementById('c-phone').value.trim();
   const route = document.getElementById('c-route').value;
   let valid = true;
+  if (!name) { setFieldErr('c-name','c-name-err',true); valid = false; } else { setFieldErr('c-name','c-name-err',false); }
   if (!validatePhone(phone)) { setFieldErr('c-phone','c-phone-err',true); valid = false; } else { setFieldErr('c-phone','c-phone-err',false); }
   if (!route) { setFieldErr('c-route','c-route-err',true); valid = false; } else { setFieldErr('c-route','c-route-err',false); }
-  if (!valid) { document.getElementById('c-phone').focus(); return; }
+  if (!valid) { (name ? document.getElementById('c-phone') : nameEl).focus(); return; }
 
   const g = id => (document.getElementById(id) ? document.getElementById(id).value.trim() : '');
   sendBooking({
     nguon: 'Form liên hệ',
-    hoTen: g('c-name'), soDienThoai: phone, tuyen: route,
+    hoTen: name, soDienThoai: phone, tuyen: route,
     dichVu: g('c-service'), ngayDi: g('c-date'), gioDi: g('c-time'),
     soLuong: g('c-qty'), diemDon: g('c-pickup'), diemTra: g('c-dropoff'),
     ghiChu: g('c-note'),
   });
 
   const cAllowEl = document.getElementById('c-allowsp');
-  sendSocialProof(g('c-title'), g('c-name'), route, !!(cAllowEl && cAllowEl.checked));
+  sendSocialProof('', name, route, !!(cAllowEl && cAllowEl.checked));
 
   document.getElementById('contactForm').style.display = 'none';
   document.getElementById('contactSuccess').classList.add('show');
