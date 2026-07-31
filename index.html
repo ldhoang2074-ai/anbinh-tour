@@ -525,11 +525,9 @@
           <form class="form-row" id="contactForm" novalidate>
             <div class="form-2col">
               <div class="form-group">
-                <label class="form-lbl" for="c-name">Họ và tên</label>
-                <div class="name-row">
-                  <select id="c-title" class="form-ctrl name-title" aria-label="Danh xưng"><option>Anh</option><option>Chị</option></select>
-                  <input type="text" id="c-name" class="form-ctrl" placeholder="Nguyễn Văn A">
-                </div>
+                <label class="form-lbl" for="c-name">HỌ VÀ TÊN <span class="req">*</span></label>
+                <input type="text" id="c-name" class="form-ctrl" placeholder="Nhập họ và tên" required>
+                <span class="form-err-msg" id="c-name-err">Vui lòng nhập họ và tên</span>
               </div>
               <div class="form-group">
                 <label class="form-lbl" for="c-phone">Số điện thoại <span class="req">*</span></label>
@@ -737,11 +735,9 @@
       <form class="form-row" id="modalForm" novalidate>
         <div class="form-2col">
           <div class="form-group">
-            <label class="form-lbl" for="m-name">Họ và tên</label>
-            <div class="name-row">
-              <select id="m-title" class="form-ctrl name-title" aria-label="Danh xưng"><option>Anh</option><option>Chị</option></select>
-              <div class="field" style="flex:1"><svg class="ic field-ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="m-name" class="form-ctrl" placeholder="Nguyễn Văn A"></div>
-            </div>
+            <label class="form-lbl" for="m-name">HỌ VÀ TÊN <span class="req">*</span></label>
+            <div class="field"><svg class="ic field-ic" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="m-name" class="form-ctrl" placeholder="Nhập họ và tên" required></div>
+            <span class="form-err-msg" id="m-name-err">Vui lòng nhập họ và tên</span>
           </div>
           <div class="form-group">
             <label class="form-lbl" for="m-phone">Số điện thoại <span class="req">*</span></label>
